@@ -1,0 +1,162 @@
+index.html
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Arte IA</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fbebf1;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #d81b60;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .main-container {
+            display: flex;
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 20px auto;
+            padding: 0 20px;
+            gap: 20px;
+        }
+
+        /* Panel de Control Izquierdo */
+        .generator-panel {
+            flex: 1;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            height: fit-content;
+        }
+
+        h2 {
+            color: #c2185b;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 12px;
+            border: 2px solid #f8bbd0;
+            border-radius: 8px;
+            resize: none;
+            font-family: inherit;
+            margin-bottom: 15px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #e91e63;
+        }
+
+        .btn-generate {
+            display: block;
+            width: 100%;
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 1em;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-generate:hover {
+            background-color: #c2185b;
+        }
+
+        /* Galería Derecha */
+        .gallery-panel {
+            flex: 2;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .photo-card {
+            background: #fff5f8;
+            border: 1px solid #f8bbd0;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c2185b;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #f48fb1;
+            color: white;
+            font-size: 0.9em;
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>IMAGE GENIUS: CREA TU ARTE</h1>
+    </header>
+
+    <div class="main-container">
+        <div class="generator-panel">
+            <h2>¿Qué quieres crear hoy?</h2>
+            <textarea placeholder="Describe la imagen que imaginas... Ej: Un astronauta tocando el piano en el espacio."></textarea>
+            <button class="btn-generate" onclick="alert('¡Aquí se conectará el motor para crear tu imagen!')">Generar Imagen</button>
+        </div>
+
+        <div class="gallery-panel">
+            <h2>Tus Creaciones</h2>
+            <div class="grid">
+                <div class="photo-card">Tu imagen 1</div>
+                <div class="photo-card">Tu imagen 2</div>
+                <div class="photo-card">Tu imagen 3</div>
+                <div class="photo-card">Tu imagen 4</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Creado con estilo - Visualiza tus ideas</p>
+    </footer>
+
+</body>
+</html>
