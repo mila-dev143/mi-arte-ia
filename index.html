@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Arte Buscador - Rosa</title>
+    <title>Mi Buscador Mágico Rosa</title>
     <style>
         body {
             background-color: #ffe6f2;
@@ -109,21 +109,21 @@
 
     <div class="container">
         <h1>✨ Buscador de Arte Mágico ✨</h1>
-        <p>Escribe lo que quieras (ej: hinata, anime, cat, roblox) y tu página lo creará al instante.</p>
+        <p>Escribe: <b>hinata</b>, <b>gato</b>, <b>perro</b> o <b>roblox</b>.</p>
         
-        <input type="text" id="promptInput" class="input-box" placeholder="¿Qué quieres ver hoy?...">
+        <input type="text" id="promptInput" class="input-box" placeholder="Escribe 'hinata' aquí...">
         <br>
-        <button class="btn" onclick="buscarImagen()">¡Buscar Imagen!</button>
+        <button class="btn" onclick="buscarImagenReal()">¡Buscar Imagen!</button>
 
         <div class="result-box">
             <div class="loader" id="loader"></div>
-            <div class="loading-text" id="loadingText">Cargando tu imagen rosa... 🎨</div>
+            <div class="loading-text" id="loadingText">Trayendo a Hinata a tu pantalla... 🏐</div>
             <img src="" id="outputImage" class="ia-image" alt="Resultado">
         </div>
     </div>
 
     <script>
-        function buscarImagen() {
+        function buscarImagenReal() {
             const inputPrompt = document.getElementById('promptInput').value.trim().toLowerCase();
             const loader = document.getElementById('loader');
             const loadingText = document.getElementById('loadingText');
@@ -138,29 +138,30 @@
             loader.style.display = "block";
             loadingText.style.display = "block";
 
-            // Buscador ultra rápido que combina tu palabra con "pink" o "anime"
-            let termino = inputPrompt;
-            if(termino.includes("hinata") || termino.includes("anime")) {
-                termino += ",anime";
-            } else {
-                termino += ",pink";
-            }
+            setTimeout(() => {
+                // Aquí guardé los enlaces de fotos reales perfectas:
+                if(inputPrompt.includes("hinata") || inputPrompt.includes("haikyu")) {
+                    // ¡Foto real de Hinata Shoyo jugando voleibol de una página de anime!
+                    img.src = "https://images.justwatch.com/background/305537559/s-640/haikyu.webp"; 
+                } 
+                else if(inputPrompt.includes("gato") || inputPrompt.includes("cat")) {
+                    img.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop";
+                } 
+                else if(inputPrompt.includes("perro") || inputPrompt.includes("dog")) {
+                    img.src = "https://images.unsplash.com/photo-1543466835-00a7907e9de1?q=80&w=500&auto=format&fit=crop";
+                } 
+                else if(inputPrompt.includes("roblox")) {
+                    img.src = "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop";
+                } 
+                else {
+                    // Fondo mágico rosa por defecto
+                    img.src = "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=500&auto=format&fit=crop"; 
+                }
 
-            // Usamos una URL inteligente que genera una foto fija de inmediato
-            img.src = "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop"; 
-            
-            // Si buscan hinata o anime, le damos una hermosa sorpresa de anime directo
-            if(inputPrompt.includes("hinata") || inputPrompt.includes("haikyu")) {
-                img.src = "https://images.unsplash.com/photo-1578632767115-351597cf2477?q=80&w=500&auto=format&fit=crop"; // Estilo anime genial
-            } else if(inputPrompt.includes("cat") || inputPrompt.includes("gato")) {
-                img.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop";
-            }
-
-            img.onload = function() {
                 loader.style.display = "none";
                 loadingText.style.display = "none";
                 img.style.display = "block";
-            };
+            }, 1200);
         }
     </script>
 
