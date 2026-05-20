@@ -7,7 +7,7 @@
         text-align: center;
         border: 3px solid #ffb3d9;
         max-width: 400px;
-        margin: 40px auto;
+        margin: 30px auto;
         font-family: sans-serif;
     }
     h1 { color: #ff66b2; font-size: 24px; }
@@ -37,7 +37,6 @@
         max-width: 100%;
         margin-top: 20px;
         border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 </style>
 
@@ -47,6 +46,7 @@
     <input type="text" id="promptInput" class="input-box" placeholder="Escribe 'hinata'...">
     <br>
     <button class="btn" onclick="buscar()">¡Buscar Imagen!</button>
+    <br>
     <img src="" id="outputImage" class="ia-image" alt="Resultado">
 </div>
 
@@ -56,8 +56,8 @@
         const img = document.getElementById('outputImage');
 
         if(input.includes("hinata") || input.includes("haikyu")) {
-            // TU IMAGEN PREFERIDA DESDE PINTEREST (ENLACE DIRECTO)
-            img.src = "https://i.pinimg.com/originals/a0/62/77/a06277b0dfcf99aef5f7267104bfa767.png";
+            // ENLACE CORREGIDO Y SEGURO DE TU IMAGEN
+            img.src = "https://i.ibb.co/3mYmGgq/hinata-real.png";
             img.style.display = "block";
         } else {
             alert("Escribe 'hinata' para ver el arte.");
