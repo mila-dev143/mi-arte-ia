@@ -117,7 +117,7 @@
 
         <div class="result-box">
             <div class="loader" id="loader"></div>
-            <div class="loading-text" id="loadingText">Trayendo a Hinata a tu pantalla... 🏐</div>
+            <div class="loading-text" id="loadingText">¡Trayendo a Hinata Shoyo a la cancha! 🏐</div>
             <img src="" id="outputImage" class="ia-image" alt="Resultado">
         </div>
     </div>
@@ -139,10 +139,10 @@
             loadingText.style.display = "block";
 
             setTimeout(() => {
-                // Aquí guardé los enlaces de fotos reales perfectas:
+                // Enlaces directos e infalibles:
                 if(inputPrompt.includes("hinata") || inputPrompt.includes("haikyu")) {
-                    // ¡Foto real de Hinata Shoyo jugando voleibol de una página de anime!
-                    img.src = "https://images.justwatch.com/background/305537559/s-640/haikyu.webp"; 
+                    // ENLACE LIBRE DE HINATA REAL JUGANDO VOLEIBOL
+                    img.src = "https://i.imgur.com/K07oQY8.jpeg"; 
                 } 
                 else if(inputPrompt.includes("gato") || inputPrompt.includes("cat")) {
                     img.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop";
@@ -154,14 +154,13 @@
                     img.src = "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop";
                 } 
                 else {
-                    // Fondo mágico rosa por defecto
                     img.src = "https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?q=80&w=500&auto=format&fit=crop"; 
                 }
 
                 loader.style.display = "none";
                 loadingText.style.display = "none";
                 img.style.display = "block";
-            }, 1200);
+            }, 1000);
         }
     </script>
 
