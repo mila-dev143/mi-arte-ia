@@ -2,188 +2,78 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Arte Haikyu ✨</title>
+    <title>Generador de Arte Haikyu</title>
     <style>
         body {
             background-color: #ffe6f2;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #4a0026;
+            font-family: sans-serif;
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px;
         }
         .container {
-            background-color: #ffffff;
-            padding: 40px;
-            border-radius: 30px;
-            box-shadow: 0 12px 32px rgba(255, 105, 180, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            max-width: 900px;
-            width: 100%;
-            border: 4px solid #ffb3d9;
-            gap: 40px;
-        }
-        .image-side {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 400px;
-        }
-        .ia-image {
-            display: none;
-            max-width: 100%;
-            max-height: 450px;
-            object-fit: contain;
-        }
-        .info-side {
-            flex: 1;
-            text-align: left;
-        }
-        h1 {
-            color: #ff66b2;
-            margin-bottom: 15px;
-            font-size: 32px;
-            font-weight: bold;
-        }
-        p {
-            color: #4a0026;
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-        .input-label {
             background: white;
-            padding: 0 5px;
-            font-size: 14px;
-            color: #ff66b2;
-            position: absolute;
-            top: -10px;
-            left: 20px;
-        }
-        .input-box {
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(255, 105, 180, 0.2);
+            text-align: center;
+            border: 3px solid #ffb3d9;
+            max-width: 400px;
             width: 100%;
-            padding: 14px 20px;
+        }
+        h1 { color: #ff66b2; font-size: 24px; }
+        .input-box {
+            width: 80%;
+            padding: 10px;
             border: 2px solid #ffb3d9;
             border-radius: 15px;
-            font-size: 16px;
+            text-align: center;
             outline: none;
-            box-sizing: border-box;
-            transition: 0.3s;
-        }
-        .input-box:focus {
-            border-color: #ff66b2;
-            box-shadow: 0 0 8px rgba(255, 105, 180, 0.4);
         }
         .btn {
             background-color: #ff66b2;
             color: white;
             border: none;
-            padding: 15px 0;
-            width: 100%;
+            padding: 12px 25px;
             border-radius: 15px;
-            font-size: 18px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 6px 14px rgba(255, 105, 180, 0.3);
+            margin-top: 15px;
         }
-        .btn:hover {
-            background-color: #ff3399;
-            transform: translateY(-2px);
-        }
-        .loader {
+        .btn:hover { background-color: #ff3399; }
+        .ia-image {
             display: none;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #ff66b2;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .footer-links {
-            margin-top: 25px;
-            display: flex;
-            gap: 15px;
-            font-size: 14px;
-        }
-        .footer-links a {
-            color: #ff66b2;
-            text-decoration: none;
+            max-width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="image-side" id="imageContainer">
-            <div class="loader" id="loader"></div>
-            <img src="" id="outputImage" class="ia-image" alt="Arte Haikyu">
-        </div>
-
-        <div class="info-side">
-            <h1>✨ Generador de Arte Haikyu ✨</h1>
-            <p>Escribe el nombre de un personaje (ej. Hinata) y haz clic en Buscar para generar arte dinámico.</p>
-            
-            <div class="input-group">
-                <span class="input-label">Personaje (Hinata)...</span>
-                <input type="text" id="promptInput" class="input-box" placeholder="Escribe 'hinata' aquí...">
-            </div>
-
-            <button class="btn" onclick="buscarImagenReal()">¡Buscar Imagen!</button>
-
-            <div class="footer-links">
-                <a href="#">🍪 Galería</a> | 
-                <a href="#">❤️ Favoritos</a> | 
-                <a href="#">🏐 Haikyu Wiki</a>
-            </div>
-        </div>
+        <h1>✨ Buscador de Arte Mágico ✨</h1>
+        <p>Escribe <b>hinata</b> abajo:</p>
+        <input type="text" id="promptInput" class="input-box" placeholder="Escribe 'hinata'...">
+        <br>
+        <button class="btn" onclick="buscar()">¡Buscar Imagen!</button>
+        <img src="" id="outputImage" class="ia-image" alt="Resultado">
     </div>
 
     <script>
-        function buscarImagenReal() {
-            const inputPrompt = document.getElementById('promptInput').value.trim().toLowerCase();
-            const loader = document.getElementById('loader');
+        function buscar() {
+            const input = document.getElementById('promptInput').value.trim().toLowerCase();
             const img = document.getElementById('outputImage');
 
-            if(inputPrompt === "") {
-                alert("¡Escribe el nombre de tu personaje!");
-                return;
-            }
-
-            img.style.display = "none";
-            loader.style.display = "block";
-
-            setTimeout(() => {
-                if(inputPrompt.includes("hinata") || inputPrompt.includes("shoyo") || inputPrompt.includes("haikyu")) {
-                    // TU IMAGEN DE HINATA PERFECTA
-                    img.src = "https://images2.imgbox.com/71/bf/wH7wK6aE_o.png"; 
-                } 
-                else if(inputPrompt.includes("gato")) {
-                    img.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop";
-                } 
-                else {
-                    img.src = "https://images.unsplash.com/photo-115434668350?q=80&w=500"; 
-                }
-
-                loader.style.display = "none";
+            if(input.includes("hinata") || input.includes("haikyu")) {
+                // TU IMAGEN PREFERIDA DESDE PINTEREST
+                img.src = "https://i.pinimg.com/originals/a0/62/77/a06277b0dfcf99aef5f7267104bfa767.png";
                 img.style.display = "block";
-            }, 800);
+            } else {
+                alert("Escribe 'hinata' para ver el arte.");
+            }
         }
     </script>
 
