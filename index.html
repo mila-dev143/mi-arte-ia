@@ -1,162 +1,169 @@
-index.html
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Arte IA</title>
+    <title>Mi Arte IA - Creador Rosa</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
+            background-color: #ffe6f2;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #fbebf1;
-            color: #333;
+            color: #4a0026;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-        }
-
-        header {
-            background-color: #d81b60;
-            color: white;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .main-container {
-            display: flex;
-            flex: 1;
-            max-width: 1200px;
-            width: 100%;
-            margin: 20px auto;
-            padding: 0 20px;
-            gap: 20px;
-        }
-
-        /* Panel de Control Izquierdo */
-        .generator-panel {
-            flex: 1;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            height: fit-content;
-        }
-
-        h2 {
-            color: #c2185b;
-            margin-bottom: 15px;
-            font-size: 1.4em;
-        }
-
-        textarea {
-            width: 100%;
-            height: 100px;
-            padding: 12px;
-            border: 2px solid #f8bbd0;
-            border-radius: 8px;
-            resize: none;
-            font-family: inherit;
-            margin-bottom: 15px;
-        }
-
-        textarea:focus {
-            outline: none;
-            border-color: #e91e63;
-        }
-
-        .btn-generate {
-            display: block;
-            width: 100%;
-            background-color: #e91e63;
-            color: white;
-            border: none;
-            padding: 12px;
-            font-size: 1em;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-generate:hover {
-            background-color: #c2185b;
-        }
-
-        /* Galería Derecha */
-        .gallery-panel {
-            flex: 2;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .photo-card {
-            background: #fff5f8;
-            border: 1px solid #f8bbd0;
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 1;
-            display: flex;
             align-items: center;
             justify-content: center;
-            color: #c2185b;
-            font-size: 0.9em;
-            font-weight: 500;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
-
-        footer {
+        .container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(255, 105, 180, 0.3);
             text-align: center;
-            padding: 15px;
-            background-color: #f48fb1;
+            max-width: 500px;
+            width: 100%;
+            border: 3px solid #ffb3d9;
+        }
+        h1 {
+            color: #ff66b2;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        p {
+            color: #660033;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .input-box {
+            width: 85%;
+            padding: 12px;
+            border: 2px solid #ffb3d9;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            text-align: center;
+            transition: 0.3s;
+        }
+        .input-box:focus {
+            border-color: #ff66b2;
+            box-shadow: 0 0 8px rgba(255, 105, 180, 0.5);
+        }
+        .btn {
+            background-color: #ff66b2;
             color: white;
-            font-size: 0.9em;
-            margin-top: auto;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+        }
+        .btn:hover {
+            background-color: #ff3399;
+            transform: scale(1.05);
+        }
+        .result-box {
+            margin-top: 25px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .loader {
+            display: none;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #ff66b2;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 10px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            display: none;
+            color: #ff66b2;
+            font-weight: bold;
+        }
+        .ia-image {
+            display: none;
+            max-width: 100%;
+            border-radius: 15px;
+            border: 3px solid #ffb3d9;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            animation: fadeIn 1s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>IMAGE GENIUS: CREA TU ARTE</h1>
-    </header>
+    <div class="container">
+        <h1>✨ Creador de Arte IA Rosa ✨</h1>
+        <p>Escribe lo que quieras imaginar (Ej: gato, piano, roblox, paisaje) y mi IA lo creará en estilo rosa.</p>
+        
+        <input type="text" id="promptInput" class="input-box" placeholder="¿Qué quieres que dibuje la IA?...">
+        <br>
+        <button class="btn" onclick="generarArte()">Generar Imagen</button>
 
-    <div class="main-container">
-        <div class="generator-panel">
-            <h2>¿Qué quieres crear hoy?</h2>
-            <textarea placeholder="Describe la imagen que imaginas... Ej: Un astronauta tocando el piano en el espacio."></textarea>
-            <button class="btn-generate" onclick="alert('¡Aquí se conectará el motor para crear tu imagen!')">Generar Imagen</button>
-        </div>
-
-        <div class="gallery-panel">
-            <h2>Tus Creaciones</h2>
-            <div class="grid">
-                <div class="photo-card">Tu imagen 1</div>
-                <div class="photo-card">Tu imagen 2</div>
-                <div class="photo-card">Tu imagen 3</div>
-                <div class="photo-card">Tu imagen 4</div>
-            </div>
+        <div class="result-box">
+            <div class="loader" id="loader"></div>
+            <div class="loading-text" id="loadingText">Procesando con IA Rosa...</div>
+            <img src="" id="outputImage" class="ia-image" alt="Arte generado por IA">
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 Creado con estilo - Visualiza tus ideas</p>
-    </footer>
+    <script>
+        function generarArte() {
+            const txt = document.getElementById('promptInput').value.toLowerCase().trim();
+            const loader = document.getElementById('loader');
+            const loadingText = document.getElementById('loadingText');
+            const img = document.getElementById('outputImage');
+
+            if(txt === "") {
+                alert("¡Por favor, escribe algo primero para que la IA pueda trabajar!");
+                return;
+            }
+
+            // Ocultar imagen anterior y mostrar carga
+            img.style.display = "none";
+            loader.style.display = "block";
+            loadingText.style.display = "block";
+
+            // Simular que la IA está "pensando" por 2 segundos
+            setTimeout(() => {
+                loader.style.display = "none";
+                loadingText.style.display = "none";
+                
+                // El simulador elige la imagen rosa según lo que se escribió
+                if(txt.includes("gato") || txt.includes("gatito")) {
+                    img.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop"; // Un lindo gatito
+                } else if(txt.includes("piano") || txt.includes("teclado") || txt.includes("musica")) {
+                    img.src = "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=500&auto=format&fit=crop"; // Teclas de piano elegantes
+                } else if(txt.includes("roblox") || txt.includes("juego")) {
+                    img.src = "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop"; // Estilo gaming/neon rosa
+                } else {
+                    // Imagen por defecto si escriben cualquier otra cosa (Un paisaje rosa mágico)
+                    img.src = "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=500&auto=format&fit=crop"; 
+                }
+
+                img.style.display = "block";
+            }, 2000);
+        }
+    </script>
 
 </body>
 </html>
