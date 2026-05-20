@@ -1,81 +1,66 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Generador de Arte Haikyu</title>
-    <style>
-        body {
-            background-color: #ffe6f2;
-            font-family: sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 8px 24px rgba(255, 105, 180, 0.2);
-            text-align: center;
-            border: 3px solid #ffb3d9;
-            max-width: 400px;
-            width: 100%;
-        }
-        h1 { color: #ff66b2; font-size: 24px; }
-        .input-box {
-            width: 80%;
-            padding: 10px;
-            border: 2px solid #ffb3d9;
-            border-radius: 15px;
-            text-align: center;
-            outline: none;
-        }
-        .btn {
-            background-color: #ff66b2;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 15px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-        .btn:hover { background-color: #ff3399; }
-        .ia-image {
-            display: none;
-            max-width: 100%;
-            margin-top: 20px;
-            border-radius: 10px;
-        }
-    </style>
-</head>
-<body>
+<style>
+    .search-container {
+        background: white;
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 24px rgba(255, 105, 180, 0.2);
+        text-align: center;
+        border: 3px solid #ffb3d9;
+        max-width: 400px;
+        margin: 40px auto;
+        font-family: sans-serif;
+    }
+    h1 { color: #ff66b2; font-size: 24px; }
+    .input-box {
+        width: 80%;
+        padding: 10px;
+        border: 2px solid #ffb3d9;
+        border-radius: 15px;
+        text-align: center;
+        outline: none;
+        font-size: 16px;
+    }
+    .btn {
+        background-color: #ff66b2;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 15px;
+        font-size: 16px;
+    }
+    .btn:hover { background-color: #ff3399; }
+    .ia-image {
+        display: none;
+        max-width: 100%;
+        margin-top: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+</style>
 
-    <div class="container">
-        <h1>✨ Buscador de Arte Mágico ✨</h1>
-        <p>Escribe <b>hinata</b> abajo:</p>
-        <input type="text" id="promptInput" class="input-box" placeholder="Escribe 'hinata'...">
-        <br>
-        <button class="btn" onclick="buscar()">¡Buscar Imagen!</button>
-        <img src="" id="outputImage" class="ia-image" alt="Resultado">
-    </div>
+<div class="search-container">
+    <h1>✨ Buscador de Arte Mágico ✨</h1>
+    <p>Escribe <b>hinata</b> abajo:</p>
+    <input type="text" id="promptInput" class="input-box" placeholder="Escribe 'hinata'...">
+    <br>
+    <button class="btn" onclick="buscar()">¡Buscar Imagen!</button>
+    <img src="" id="outputImage" class="ia-image" alt="Resultado">
+</div>
 
-    <script>
-        function buscar() {
-            const input = document.getElementById('promptInput').value.trim().toLowerCase();
-            const img = document.getElementById('outputImage');
+<script>
+    function buscar() {
+        const input = document.getElementById('promptInput').value.trim().toLowerCase();
+        const img = document.getElementById('outputImage');
 
-            if(input.includes("hinata") || input.includes("haikyu")) {
-                // TU IMAGEN PREFERIDA DESDE PINTEREST
-                img.src = "https://i.pinimg.com/originals/a0/62/77/a06277b0dfcf99aef5f7267104bfa767.png";
-                img.style.display = "block";
-            } else {
-                alert("Escribe 'hinata' para ver el arte.");
-            }
+        if(input.includes("hinata") || input.includes("haikyu")) {
+            // TU IMAGEN PREFERIDA DESDE PINTEREST (ENLACE DIRECTO)
+            img.src = "https://i.pinimg.com/originals/a0/62/77/a06277b0dfcf99aef5f7267104bfa767.png";
+            img.style.display = "block";
+        } else {
+            alert("Escribe 'hinata' para ver el arte.");
         }
-    </script>
-
-</body>
-</html>
+    }
+</script>
