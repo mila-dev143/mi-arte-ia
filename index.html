@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Arte IA - Creador Rosa</title>
+    <title>Mi Arte IA Real - Rosa</title>
     <style>
         body {
             background-color: #ffe6f2;
@@ -70,7 +70,7 @@
         }
         .result-box {
             margin-top: 25px;
-            min-height: 200px;
+            min-height: 250px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -81,10 +81,10 @@
             border: 5px solid #f3f3f3;
             border-top: 5px solid #ff66b2;
             border-radius: 50%;
-            width: 40px;
-            height: 40px;
+            width: 50px;
+            height: 50px;
             animation: spin 1s linear infinite;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -94,6 +94,7 @@
             display: none;
             color: #ff66b2;
             font-weight: bold;
+            margin-bottom: 10px;
         }
         .ia-image {
             display: none;
@@ -101,67 +102,74 @@
             border-radius: 15px;
             border: 3px solid #ffb3d9;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            animation: fadeIn 1s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>✨ Creador de Arte IA Rosa ✨</h1>
-        <p>Escribe lo que quieras imaginar (Ej: gato, piano, roblox, paisaje) y mi IA lo creará en estilo rosa.</p>
+        <h1>✨ Creador de Arte IA Real ✨</h1>
+        <p>Escribe lo que quieras en inglés para que la IA lo dibuje desde cero en segundos.</p>
         
-        <input type="text" id="promptInput" class="input-box" placeholder="¿Qué quieres que dibuje la IA?...">
+        <input type="text" id="promptInput" class="input-box" placeholder="Ej: pink cat playing piano, cute dog, astronaut...">
         <br>
-        <button class="btn" onclick="generarArte()">Generar Imagen</button>
+        <button class="btn" onclick="generarArteReal()">¡Crear con IA Real!</button>
 
         <div class="result-box">
             <div class="loader" id="loader"></div>
-            <div class="loading-text" id="loadingText">Procesando con IA Rosa...</div>
+            <div class="loading-text" id="loadingText">La IA está dibujando tu idea desde cero... (Suele tardar unos 10 segundos)</div>
             <img src="" id="outputImage" class="ia-image" alt="Arte generado por IA">
         </div>
     </div>
 
     <script>
-        function generarArte() {
-            const txt = document.getElementById('promptInput').value.toLowerCase().trim();
+        async function generarArteReal() {
+            const inputPrompt = document.getElementById('promptInput').value.trim();
             const loader = document.getElementById('loader');
             const loadingText = document.getElementById('loadingText');
             const img = document.getElementById('outputImage');
 
-            if(txt === "") {
-                alert("¡Por favor, escribe algo primero para que la IA pueda trabajar!");
+            if(inputPrompt === "") {
+                alert("¡Escribe una idea primero!");
                 return;
             }
 
-            // Ocultar imagen anterior y mostrar carga
+            // Mostrar animación de carga
             img.style.display = "none";
             loader.style.display = "block";
             loadingText.style.display = "block";
 
-            // Simular que la IA está "pensando" por 2 segundos
-            setTimeout(() => {
-                loader.style.display = "none";
-                loadingText.style.display = "none";
-                
-                // El simulador elige la imagen rosa según lo que se escribió
-                if(txt.includes("gato") || txt.includes("gatito")) {
-                    img.src = "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=500&auto=format&fit=crop"; // Un lindo gatito
-                } else if(txt.includes("piano") || txt.includes("teclado") || txt.includes("musica")) {
-                    img.src = "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=500&auto=format&fit=crop"; // Teclas de piano elegantes
-                } else if(txt.includes("roblox") || txt.includes("juego")) {
-                    img.src = "https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?q=80&w=500&auto=format&fit=crop"; // Estilo gaming/neon rosa
-                } else {
-                    // Imagen por defecto si escriben cualquier otra cosa (Un paisaje rosa mágico)
-                    img.src = "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=500&auto=format&fit=crop"; 
+            try {
+                // Truco mágico: Le sumamos "pink style" al final de lo que escribas para que todo salga con tu toque rosa favorito
+                const promptFinal = inputPrompt + ", cute pink style, soft lighting, digital art";
+
+                // Conectando con el motor de IA gratuito de Hugging Face
+                const respuesta = await fetch(
+                    "https://api-inference.huggingface.co/models/Lykon/dreamshaper-8",
+                    {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ inputs: promptFinal }),
+                    }
+                );
+
+                if (!respuesta.ok) {
+                    throw new Error("La IA está ocupada, intenta en unos segundos.");
                 }
 
+                const blob = await respuesta.blob();
+                const urlImagen = URL.createObjectURL(blob);
+                
+                // Mostrar el resultado real
+                img.src = urlImagen;
                 img.style.display = "block";
-            }, 2000);
+            } catch (error) {
+                alert("Hubo un pequeño problema con el motor de IA. ¡Prueba otra vez!");
+                console.error(error);
+            } finally {
+                loader.style.display = "none";
+                loadingText.style.display = "none";
+            }
         }
     </script>
 
